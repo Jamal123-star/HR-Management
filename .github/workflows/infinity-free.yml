@@ -17,6 +17,9 @@ jobs:
       - name: Get latest code
         uses: actions/checkout@v4
 
+      - name: Install composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
     
       - name: Deploy to InfinityFree via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -24,7 +27,7 @@ jobs:
           server: ftpupload.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /yourdomain.com/htdocs/  
+          server-dir: /htdocs/  
           timeout: 86400000
           log-level: standard
 
